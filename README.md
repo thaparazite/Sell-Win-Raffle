@@ -2,6 +2,10 @@
 
 Desktop raffle ticket management system built with JavaFX.
 
+## ℹ️ About
+
+Sell & Win Raffle is a desktop application for running local raffle campaigns with a simple operator workflow. It helps organizers manage prize items, sell tickets, track players, and run winner draws without needing a database or web backend.
+
 ## Overview
 
 Sell & Win Raffle is a local-first desktop application for managing raffle items, ticket sales, player records, and winner selection in one workflow. It is designed for operators who need a lightweight setup without a database server or web deployment.
@@ -9,8 +13,7 @@ Sell & Win Raffle is a local-first desktop application for managing raffle items
 The application stores its data on the local machine using CSV files and item-specific image folders under the user's home directory. That keeps setup simple, backups straightforward, and the operating model easy to understand.
 
 
-
-## Key Features
+## ✨ Key Features
 
 - Add raffle items with title, description, ticket count, and ticket price.
 - Store item images locally and browse them in a dedicated gallery view.
@@ -21,7 +24,7 @@ The application stores its data on the local machine using CSV files and item-sp
 - Run a live draw and display the winner or show when a selected ticket was not sold.
 - Package the application as a JAR and a Windows executable.
 
-## Tech Stack
+## 🛠️ Tech Stack
 
 | Area | Details |
 |------|---------|
@@ -32,7 +35,7 @@ The application stores its data on the local machine using CSV files and item-sp
 | Storage | Local CSV files |
 | Packaging | JavaFX Maven Plugin, Launch4j artifacts in `out/artifacts/` |
 
-## Application Flow
+## 🔄 Application Flow
 
 ### 1. Add a raffle item
 
@@ -75,7 +78,7 @@ The player status screen supports searching by:
 
 The draw screen animates ticket number generation and then stops on the selected ticket. If the ticket belongs to a player, the winner is displayed. If the ticket has not been sold, the app shows that clearly.
 
-## Data Storage
+## 🗂️ Data Storage
 
 At runtime, the application writes data to the user's home directory:
 
@@ -108,7 +111,7 @@ Stores the ticket ledger for a single raffle item with:
 - Phone number
 - Number of tickets associated with that buyer
 
-## Project Structure
+## 📁 Project Structure
 
 ```text
 src/
@@ -131,7 +134,7 @@ src/
       utils/
 ```
 
-## Architecture
+## 🏗️ Architecture
 
 ### Main application layer
 
@@ -164,7 +167,7 @@ The UI is split into focused JavaFX controllers:
 
 These utility classes handle CSV parsing and serialization.
 
-## Validation and Safety
+## ✅ Validation and Safety
 
 The application already includes several operator-facing safeguards:
 
@@ -174,13 +177,13 @@ The application already includes several operator-facing safeguards:
 - File accessibility checks before writing CSV files
 - Confirmation dialogs before deleting items or player records
 
-## Requirements
+## 📋 Requirements
 
 - Java 21
 - Maven 3.9 or later
 - Windows is the primary packaged target for the included `.exe` artifact
 
-## Running the Application
+## 🚀 Running the Application
 
 ### Start in development mode
 
@@ -200,7 +203,7 @@ mvn test
 mvn clean package
 ```
 
-## Testing
+## 🧪 Testing
 
 The repository contains automated tests for:
 
@@ -214,7 +217,7 @@ Current repository test coverage signals include:
 - 12 test classes
 - 47 JUnit tests
 
-## Included Artifacts
+## 📦 Included Artifacts
 
 The repository currently includes generated application artifacts in:
 
@@ -227,7 +230,7 @@ That folder contains:
 - `Sell_and_Win_Raffle.jar`
 - `Sell & Win Raffle.exe`
 
-## Screens in the Application
+## 🖥️ Screens in the Application
 
 The JavaFX UI currently includes these views:
 
@@ -239,18 +242,17 @@ The JavaFX UI currently includes these views:
 - View item view
 - Player status view
 
-## Current Limitations
+## ⚠️ Current Limitations
 
 - Persistence is CSV-based rather than database-backed.
 - The app is designed for local use, not multi-user access.
 - Images are managed through the local file system.
 - The draw can stop on a ticket that has not been sold, and the UI reports that outcome explicitly.
 
-## Future Improvements
+## 🛣️ Future Improvements
 
 - Replace CSV storage with a relational database for stronger concurrency support.
 - Add sales reports and export features.
 - Add installer-based distribution for non-technical operators.
 - Track draw history and operational audit logs.
 - Improve image management and default image workflows.
-
