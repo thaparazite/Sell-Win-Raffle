@@ -1,43 +1,56 @@
-# Sell & Win Raffle
+# Sell & Win Raffle 🎟️
 
-Desktop raffle ticket management system built with JavaFX.
+[![Java](https://img.shields.io/badge/Java-21-ED8B00?logo=openjdk&logoColor=white)](https://openjdk.org/)
+[![JavaFX](https://img.shields.io/badge/JavaFX-21-2C2255?logo=java&logoColor=white)](https://openjfx.io/)
+[![Build](https://img.shields.io/badge/Build-Maven-C71A36?logo=apachemaven&logoColor=white)](https://maven.apache.org/)
+[![Tests](https://img.shields.io/badge/Tests-JUnit%205-25A162?logo=junit5&logoColor=white)](https://junit.org/junit5/)
 
-## ℹ️ About
+Desktop raffle ticket management system built with **JavaFX**. Designed for local raffle campaigns with an operator-friendly workflow for managing items, selling tickets, tracking players, and running a live draw.
 
-Sell & Win Raffle is a desktop application for running local raffle campaigns with a simple operator workflow. It helps organizers manage prize items, sell tickets, track players, and run winner draws without needing a database or web backend.
+---
 
-## Overview
+## 🧾 About
 
-Sell & Win Raffle is a local-first desktop application for managing raffle items, ticket sales, player records, and winner selection in one workflow. It is designed for operators who need a lightweight setup without a database server or web deployment.
+**Sell & Win Raffle** is a local-first desktop application for organizing and running raffle campaigns end-to-end:
 
-The application stores its data on the local machine using CSV files and item-specific image folders under the user's home directory. That keeps setup simple, backups straightforward, and the operating model easy to understand.
+- Manage raffle items (prizes)
+- Sell tickets and assign ticket IDs automatically
+- Track players and ticket inventory
+- Run a live draw and announce winners
 
+Data is stored locally using **CSV files** and item-specific image folders under the user’s home directory, keeping setup simple and backups straightforward.
+
+---
 
 ## ✨ Key Features
 
-- Add raffle items with title, description, ticket count, and ticket price.
-- Store item images locally and browse them in a dedicated gallery view.
-- Sell tickets to players and assign ticket IDs automatically.
-- Reuse ticket IDs when player records are removed.
-- Track remaining ticket inventory per raffle item.
-- Search player status by name, phone number, or ticket ID.
-- Run a live draw and display the winner or show when a selected ticket was not sold.
-- Package the application as a JAR and a Windows executable.
+- 🏷️ Create raffle items with title, description, ticket count, and ticket price
+- 🖼️ Store and browse item images (with a configurable default image)
+- 👤 Sell tickets to players and auto-assign ticket IDs
+- ♻️ Reuse ticket IDs when player records are removed
+- 📦 Track remaining ticket inventory per item
+- 🔎 Search player status by name, phone number, or ticket ID
+- 🎲 Run a live draw and show the winner (or indicate when a selected ticket was not sold)
+- 🧰 Package as a **JAR** and a Windows **.exe** (Launch4j)
 
-## 🛠️ Tech Stack
+---
+
+## 🧱 Tech Stack
 
 | Area | Details |
 |------|---------|
-| Language | Java 21 |
-| UI | JavaFX 21, FXML, CSS |
-| Build | Maven |
-| Testing | JUnit 5 |
-| Storage | Local CSV files |
-| Packaging | JavaFX Maven Plugin, Launch4j artifacts in `out/artifacts/` |
+| 💻 Language | Java 21 |
+| 🧩 UI | JavaFX 21, FXML, CSS |
+| 🏗️ Build | Maven |
+| ✅ Testing | JUnit 5 |
+| 💾 Storage | Local CSV files |
+| 📦 Packaging | JavaFX Maven Plugin, Launch4j artifacts in `out/artifacts/` |
+
+---
 
 ## 🔄 Application Flow
 
-### 1. Add a raffle item
+### 1) Add a raffle item
 
 Create a new item with:
 
@@ -48,15 +61,15 @@ Create a new item with:
 
 When an item is created, the app prepares:
 
-- A folder for the item's images
+- A folder for the item’s images
 - A ticket record CSV for that item
 - An entry in the main `data.csv` catalog
 
-### 2. Add item images
+### 2) Add item images
 
-Each item gets its own image folder under the application data directory. The app lets the operator set a default image for the main dashboard and browse all images for the item in the item viewer.
+Each item gets its own image folder under the application data directory. Operators can set a default image for the main dashboard and browse all images for an item in the item viewer.
 
-### 3. Sell tickets
+### 3) Sell tickets
 
 For a selected item, the operator can add players by entering:
 
@@ -64,9 +77,9 @@ For a selected item, the operator can add players by entering:
 - Phone number
 - Number of tickets to purchase
 
-The app randomly assigns available ticket IDs and writes the updated player state back to the item's record file.
+The app randomly assigns available ticket IDs and writes the updated player state back to the item’s record file.
 
-### 4. Check player status
+### 4) Check player status
 
 The player status screen supports searching by:
 
@@ -74,13 +87,18 @@ The player status screen supports searching by:
 - Phone number
 - Player name
 
-### 5. Run the draw
+### 5) Run the draw
 
-The draw screen animates ticket number generation and then stops on the selected ticket. If the ticket belongs to a player, the winner is displayed. If the ticket has not been sold, the app shows that clearly.
+The draw screen animates ticket number generation and stops on the selected ticket:
+
+- If the ticket belongs to a player, the winner is displayed.
+- If the ticket has not been sold, the UI clearly indicates that outcome.
+
+---
 
 ## 🗂️ Data Storage
 
-At runtime, the application writes data to the user's home directory:
+At runtime, the application writes data to the user’s home directory:
 
 ```text
 ~/Sell & Win Raffle/
@@ -111,6 +129,8 @@ Stores the ticket ledger for a single raffle item with:
 - Phone number
 - Number of tickets associated with that buyer
 
+---
+
 ## 📁 Project Structure
 
 ```text
@@ -134,14 +154,14 @@ src/
       utils/
 ```
 
+---
+
 ## 🏗️ Architecture
 
 ### Main application layer
 
-- `raffle.main.App`
-  Loads the JavaFX application, shows the loading screen, and navigates between views.
-- `raffle.main.EntryPoint`
-  Thin entry point class used to launch the app.
+- `raffle.main.App` — loads the JavaFX application, shows the loading screen, and navigates between views
+- `raffle.main.EntryPoint` — thin entry point class used to launch the app
 
 ### Controllers
 
@@ -167,9 +187,11 @@ The UI is split into focused JavaFX controllers:
 
 These utility classes handle CSV parsing and serialization.
 
+---
+
 ## ✅ Validation and Safety
 
-The application already includes several operator-facing safeguards:
+Operator-facing safeguards include:
 
 - Empty-field validation on item and player forms
 - Positive-number validation for ticket counts and ticket price
@@ -177,11 +199,15 @@ The application already includes several operator-facing safeguards:
 - File accessibility checks before writing CSV files
 - Confirmation dialogs before deleting items or player records
 
+---
+
 ## 📋 Requirements
 
 - Java 21
-- Maven 3.9 or later
+- Maven 3.9+
 - Windows is the primary packaged target for the included `.exe` artifact
+
+---
 
 ## 🚀 Running the Application
 
@@ -203,6 +229,8 @@ mvn test
 mvn clean package
 ```
 
+---
+
 ## 🧪 Testing
 
 The repository contains automated tests for:
@@ -217,9 +245,11 @@ Current repository test coverage signals include:
 - 12 test classes
 - 47 JUnit tests
 
+---
+
 ## 📦 Included Artifacts
 
-The repository currently includes generated application artifacts in:
+The repository includes generated application artifacts in:
 
 ```text
 out/artifacts/Sell_and_Win_Raffle_jar/
@@ -229,6 +259,8 @@ That folder contains:
 
 - `Sell_and_Win_Raffle.jar`
 - `Sell & Win Raffle.exe`
+
+---
 
 ## 🖥️ Screens in the Application
 
@@ -242,17 +274,21 @@ The JavaFX UI currently includes these views:
 - View item view
 - Player status view
 
+---
+
 ## ⚠️ Current Limitations
 
-- Persistence is CSV-based rather than database-backed.
-- The app is designed for local use, not multi-user access.
-- Images are managed through the local file system.
-- The draw can stop on a ticket that has not been sold, and the UI reports that outcome explicitly.
+- CSV-based persistence (not database-backed)
+- Designed for local use (not multi-user)
+- Images managed through the local file system
+- Draw can stop on a ticket that has not been sold (and the UI reports that explicitly)
+
+---
 
 ## 🛣️ Future Improvements
 
-- Replace CSV storage with a relational database for stronger concurrency support.
-- Add sales reports and export features.
-- Add installer-based distribution for non-technical operators.
-- Track draw history and operational audit logs.
-- Improve image management and default image workflows.
+- Replace CSV storage with a relational database for stronger concurrency support
+- Add sales reports and export features
+- Add installer-based distribution for non-technical operators
+- Track draw history and operational audit logs
+- Improve image management and default image workflows
